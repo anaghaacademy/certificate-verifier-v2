@@ -8,9 +8,9 @@ export const runtime = "nodejs";
 
 export async function GET(
   _request: NextRequest,
-  context: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
-  const { id } = context.params;
+  const { id } = await context.params;
   const trimmed = id?.trim();
   if (!trimmed) {
     return new Response("Missing ID", { status: 400 });
