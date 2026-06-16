@@ -81,6 +81,18 @@ export default function VerifyPage() {
     );
   }
 
+  // Normalize Google Drive photo URLs to a direct image URL if possible
+  const normalizedPhotoUrl =
+    cert.photoUrl && cert.photoUrl.includes("drive.google.com/file/d/")
+      ? (() => {
+          const match = cert.photoUrl.match(/\/file\/d\/([^/]+)\//);
+          const fileId = match?.[1];
+          return fileId
+            ? `https://drive.google.com/uc?export=view&id=${fileId}`
+            : cert.photoUrl;
+        })()
+      : cert.photoUrl;
+
   return (
     <main className="min-h-screen bg-gray-100 px-4 py-10">
       <div className="mx-auto max-w-4xl rounded-2xl bg-white p-8 shadow">
@@ -90,9 +102,9 @@ export default function VerifyPage() {
 
         <div className="mt-8 grid gap-6 md:grid-cols-[160px_1fr]">
           <div className="flex justify-center">
-            {cert.photoUrl ? (
+            {normalizedPhotoUrl ? (
               <img
-                src={cert.photoUrl}
+                src={normalizedPhotoUrl}
                 alt="Student Photo"
                 className="h-40 w-32 rounded border object-cover"
               />
