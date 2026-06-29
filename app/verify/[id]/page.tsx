@@ -12,10 +12,9 @@ type Certificate = {
   fromDate: string;
   toDate: string;
   grade: string;
-  photoUrl?: string;
-  certificateFileUrl?: string;
   status: string;
   createdAt: string;
+  certificateFileUrl?: string;
 };
 
 export default function VerifyPage() {
