@@ -85,8 +85,9 @@ export default function AdminPage() {
     }
   };
 
+  // Shared input style: dark text, visible placeholder, white background
   const inputClasses =
-    "mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 bg-white";
+    "mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 bg-white focus:outline-none focus:ring-2 focus:ring-purple-600";
 
   return (
     <main className="min-h-screen bg-gray-100 px-4 py-10">
@@ -109,8 +110,8 @@ export default function AdminPage() {
               value={form.certificateId}
               onChange={handleChange}
               required
-              className={inputClasses}
-              placeholder="Certificate ID"
+              className={`${inputClasses} border-purple-500`}
+              placeholder="Certificate ID (e.g. LIVE-2)"
             />
           </div>
 

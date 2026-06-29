@@ -25,11 +25,14 @@ export default function HomePage() {
         </p>
 
         <form onSubmit={handleSubmit} className="mt-8 space-y-4">
+          <label className="block text-sm font-semibold text-gray-700">
+            Certificate ID
+          </label>
           <input
             value={id}
             onChange={(e) => setId(e.target.value)}
-            placeholder="Certificate ID (e.g. LIVE-2)"
-            className="w-full rounded-lg border border-gray-300 px-4 py-3"
+            placeholder="e.g. LIVE-2"
+            className="w-full rounded-lg border border-purple-500 px-4 py-3 text-gray-900 placeholder-gray-500 bg-white focus:outline-none focus:ring-2 focus:ring-purple-600"
           />
 
           <button
