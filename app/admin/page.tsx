@@ -85,20 +85,23 @@ export default function AdminPage() {
     }
   };
 
+  const inputClasses =
+    "mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 bg-white";
+
   return (
     <main className="min-h-screen bg-gray-100 px-4 py-10">
       <div className="mx-auto max-w-2xl rounded-2xl bg-white p-8 shadow">
         <h1 className="text-3xl font-bold text-center text-purple-700">
-          Admin – Create Certificate
+          Admin Dashboard
         </h1>
 
         <p className="mt-2 text-center text-gray-600">
-          Upload PDF to Google Drive, copy the share link, then fill this form.
+          Add certificate details here.
         </p>
 
         <form onSubmit={handleSubmit} className="mt-8 space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-semibold text-gray-700">
               Certificate ID
             </label>
             <input
@@ -106,14 +109,14 @@ export default function AdminPage() {
               value={form.certificateId}
               onChange={handleChange}
               required
-              className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2"
-              placeholder="e.g. LIVE-2"
+              className={inputClasses}
+              placeholder="Certificate ID"
             />
           </div>
 
           <div className="grid gap-4 md:grid-cols-2">
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-semibold text-gray-700">
                 Student Name
               </label>
               <input
@@ -121,11 +124,12 @@ export default function AdminPage() {
                 value={form.studentName}
                 onChange={handleChange}
                 required
-                className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2"
+                className={inputClasses}
+                placeholder="Student Name"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-semibold text-gray-700">
                 Father Name
               </label>
               <input
@@ -133,13 +137,14 @@ export default function AdminPage() {
                 value={form.fatherName}
                 onChange={handleChange}
                 required
-                className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2"
+                className={inputClasses}
+                placeholder="Father Name"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-semibold text-gray-700">
               Course Name
             </label>
             <input
@@ -147,59 +152,60 @@ export default function AdminPage() {
               value={form.courseName}
               onChange={handleChange}
               required
-              className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2"
+              className={inputClasses}
+              placeholder="Course Name"
             />
           </div>
 
           <div className="grid gap-4 md:grid-cols-2">
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-semibold text-gray-700">
                 From Date
               </label>
               <input
                 name="fromDate"
                 value={form.fromDate}
                 onChange={handleChange}
-                placeholder="e.g. 01/05/2026"
-                className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2"
+                placeholder="From Date"
+                className={inputClasses}
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-semibold text-gray-700">
                 To Date
               </label>
               <input
                 name="toDate"
                 value={form.toDate}
                 onChange={handleChange}
-                placeholder="e.g. 15/06/2026"
-                className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2"
+                placeholder="To Date"
+                className={inputClasses}
               />
             </div>
           </div>
 
           <div className="grid gap-4 md:grid-cols-2">
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-semibold text-gray-700">
                 Grade
               </label>
               <input
                 name="grade"
                 value={form.grade}
                 onChange={handleChange}
-                placeholder="e.g. Excellent"
-                className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2"
+                placeholder="Excellent"
+                className={inputClasses}
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-semibold text-gray-700">
                 Status
               </label>
               <select
                 name="status"
                 value={form.status}
                 onChange={handleChange}
-                className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2"
+                className={inputClasses}
               >
                 <option value="Verified">Verified</option>
                 <option value="Invalid">Invalid</option>
@@ -208,7 +214,7 @@ export default function AdminPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-semibold text-gray-700">
               Certificate File URL (Google Drive link)
             </label>
             <input
@@ -216,7 +222,7 @@ export default function AdminPage() {
               value={form.certificateFileUrl}
               onChange={handleChange}
               required
-              className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2"
+              className={inputClasses}
               placeholder="https://drive.google.com/file/d/FILE_ID/view?..."
             />
             <p className="mt-1 text-xs text-gray-500">
