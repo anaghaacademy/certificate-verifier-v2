@@ -27,17 +27,38 @@ export default function AdminPage() {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
+  function isLikelyDriveUrl(url: string): boolean {
+    if (!url) return false;
+    try {
+      const u = new URL(url);
+      if (!["http:", "https:"].includes(u.protocol)) return false;
+      return u.hostname.includes("drive.google.com");
+    } catch {
+      return false;
+    }
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
     setMessage(null);
     setError(null);
 
+    const trimmedUrl = form.certificateFileUrl.trim();
+
+    if (!isLikelyDriveUrl(trimmedUrl)) {
+      setSubmitting(false);
+      setError(
+        "Certificate File URL must be a valid Google Drive link (starting with https://drive.google.com/)."
+      );
+      return;
+    }
+
     try {
       const res = await fetch("/api/admin/certificates", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, certificateFileUrl: trimmedUrl }),
       });
 
       if (!res.ok) {
@@ -200,7 +221,8 @@ export default function AdminPage() {
             />
             <p className="mt-1 text-xs text-gray-500">
               Make sure the file is shared as &quot;Anyone with the link can
-              view&quot;.
+              view&quot; and the link starts with
+              &quot;https://drive.google.com/&quot;.
             </p>
           </div>
 
